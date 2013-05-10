@@ -1,12 +1,18 @@
+#include <ctype.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "fields.h"
 
-#define talloc(ty, sz) (ty *) malloc (sz * sizeof(ty))
+#define talloc(ty, sz) malloc(sz * sizeof(ty))
 #define strdup(s) ((char *) strcpy(talloc(char, strlen(s)+1), s))
 
+/**
+ * Builds the struct.
+ * @param filename Either a filename or NULL for stdin
+ * @param key 'f' for a regular file, 'p' for a command for popen
+ */
 static IS make_inputstruct(char *filename, char *key)
-                         /* "f" for regular file or stdin if filename is NULL */
-                         /* "p" if filename is a command for popen */
 {
   IS is;
   int file;
@@ -42,10 +48,9 @@ static IS make_inputstruct(char *filename, char *key)
   }
   return is;
 }
-
   
-
-IS new_inputstruct(char *filename)   /* use NULL for stdin.  Calls malloc */
+/** Use NULL for stdin. Calls malloc(2). */
+IS new_inputstruct(char *filename)
 {
   return make_inputstruct(filename, "f");
 }
@@ -57,9 +62,7 @@ IS pipe_inputstruct(char *command)
 
 int get_line(IS is)
 {
-  int i, len;
-  int f;
-  char *tmp;
+  int i;
   char lastchar;
   char *line;
 

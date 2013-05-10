@@ -272,7 +272,7 @@ JRB jrb_find_gen(JRB n, Jval key, int (*fxn)(Jval, Jval))
  
 static JRB jrb_insert_b(JRB n, Jval key, Jval val)
 {
-  JRB newleft, newright, newnode, list, p;
+  JRB newleft, newright, newnode, p;
  
   if (ishead(n)) {
     if (n->parent == n) {         /* Tree is empty */
@@ -352,7 +352,6 @@ static void single_rotate(JRB y, int l)
 {
   int rl, ir;
   JRB x, yp;
-  char *tmp;
  
   ir = isroot(y);
   yp = y->parent;

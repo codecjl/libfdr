@@ -1,7 +1,7 @@
 #ifndef	_JVAL_H_
 #define	_JVAL_H_
 
-/* The Jval -- a type that can hold any 8-byte type */
+/** The Jval -- a type that can hold any 8-byte type */
 
 typedef union {
     int i;
@@ -34,9 +34,15 @@ extern Jval new_jval_ush(unsigned short);
 extern Jval new_jval_ui(unsigned int);
 extern Jval new_jval_iarray(int, int);
 extern Jval new_jval_farray(float, float);
-extern Jval new_jval_carray_nt(char *);  /* Carray is null terminated */
-extern Jval new_jval_carray_nnt(char *);  /* Carray is not null terminated */
-       /* For ucarray -- use carray, because it uses memcpy */
+
+/** Carray is null terminated */
+extern Jval new_jval_carray_nt(char *);
+
+/**
+ * Carray is not null terminated.
+ * For ucarray -- use carray, because it uses memcpy(3).
+ */
+extern Jval new_jval_carray_nnt(char *);
 
 extern Jval JNULL;
 

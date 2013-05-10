@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include "jval.h"
 
 Jval JNULL;
@@ -156,4 +157,3 @@ float *jval_farray(Jval j) {
 char *jval_carray(Jval j) {
   return j.carray;
 }
-
